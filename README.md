@@ -1,7 +1,7 @@
 # TP4 : Sockets en mode non-connecté UDP — Chat C/S
 
 **Matière :** Développement d'applications réparties — LSI3 — 2026/2027
-**Étudiant :** Prénom NOM
+**Étudiant :** Wael Riahi
 
 ## Objectif
 Implémenter en Java un service de chat client/serveur avec `DatagramSocket` (UDP) : d'abord unidirectionnel avec un client, puis bidirectionnel avec diffusion à plusieurs clients.
@@ -22,8 +22,6 @@ src/
 - Le serveur se lie au port 1234 via `InetSocketAddress` et affiche l'adresse (IP:port) de l'expéditeur et le message.
 - Le client envoie les messages au format `[NomUtilisateur] : message`.
 
-![Capture serveur étape 2](screenshots/step2_server.png)
-![Capture client étape 2](screenshots/step2_client.png)
 
 **Synthèse :** Le serveur reçoit bien chaque datagramme envoyé par le client et l'affiche avec l'adresse de l'expéditeur. La communication est à sens unique : le serveur ne renvoie rien.
 
@@ -33,9 +31,7 @@ src/
 - Le client utilise un **thread** dédié à la réception pour recevoir en temps réel pendant que le thread principal envoie.
 - À la connexion, le client envoie un message « a rejoint le chat » pour s'enregistrer auprès du serveur.
 
-![Capture serveur étape 3](screenshots/step3_server.png)
-![Client 1](screenshots/step3_client1.png)
-![Client 2](screenshots/step3_client2.png)
+
 
 **Synthèse :** Les messages d'un client sont diffusés en temps réel à tous les autres clients connectés. UDP étant sans connexion, la « connexion » est simulée par l'enregistrement de l'adresse de l'expéditeur côté serveur. Limites : pas de garantie de livraison ni d'ordre des messages, et pas de détection de déconnexion (le serveur continue d'envoyer aux clients enregistrés).
 
